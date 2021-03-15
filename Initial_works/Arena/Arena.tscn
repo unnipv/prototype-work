@@ -8,7 +8,7 @@
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 25, 25 )
 
-[sub_resource type="ConvexPolygonShape" id=3]
+[sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( 12.5, 0, 12.5, -12.5, 0, 12.5, 12.5, 0, -12.5, -12.5, 0, -12.5 )
 
 [node name="Main" type="Spatial"]
@@ -21,7 +21,7 @@ mesh = SubResource( 1 )
 material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -2.24877e-08, 0.707107, -0.707107, 8.58469e-08, 0.707107, 0.707107, 1, -4.48018e-08, -7.66042e-08, -5, 7.236, 0 )
