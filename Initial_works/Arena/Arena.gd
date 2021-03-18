@@ -13,9 +13,9 @@ func _input(event):
 		else:
 			print(object)
 			if object.size()>0:
-				get_tree().call_group("Assets", "set_enabled", object["collider"])
-			
-			
+					get_tree().call_group("Assets", "set_enabled", object["collider"])
+
+
 func get_object_under_mouse():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_from = $Camera.project_ray_origin(mouse_pos)

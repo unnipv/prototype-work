@@ -90,6 +90,11 @@ decrease={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Arena"
+3d_physics/layer_2="Assets"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

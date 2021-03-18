@@ -8,6 +8,8 @@ func _on_Fence_pressed():
 	asset_node.add_child(asset)
 #	asset.set_as_toplevel(true)
 	asset.translation = Vector3(0,0,0)
+	var asset_tree = get_node("../../AssetTree")
+	asset_tree.add_asset("Fence",asset)
 	
 func _on_Cart_pressed():
 	print("pressed")
@@ -16,6 +18,9 @@ func _on_Cart_pressed():
 	asset_node.add_child(asset)
 #	asset.set_as_toplevel(true)
 	asset.translation = Vector3(0,0,0)
+	var asset_tree = get_node("../../AssetTree")
+	asset_tree.add_asset("Cart", asset)
+	
 
 
 func _on_Hedge_pressed():
@@ -25,3 +30,5 @@ func _on_Hedge_pressed():
 	asset_node.add_child(asset)
 #	asset.set_as_toplevel(true)
 	asset.translation = Vector3(0,0,0)
+	var asset_tree = get_node("../../AssetTree")
+	asset_tree.add_asset("Hedge", asset)
