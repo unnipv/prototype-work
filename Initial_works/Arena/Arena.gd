@@ -4,17 +4,16 @@ var mouse_inside = false
 var pos = Vector3()
 
 func _input(event):
-	if event.is_action_pressed("click"):
+	if event is InputEventMouseButton and event.is_doubleclick():
 		var object = get_object_under_mouse()
 		print("clicked")
 		if object.size()>0 and $Assets.is_a_parent_of(object["collider"]):
 			get_tree().call_group("Assets", "set_enabled", object["collider"])
 			print(object["collider"])
 		else:
-			print(object)
+#			print(object)
 			if object.size()>0:
 					get_tree().call_group("Assets", "set_enabled", object["collider"])
-
 
 func get_object_under_mouse():
 	var mouse_pos = get_viewport().get_mouse_position()

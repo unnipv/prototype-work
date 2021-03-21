@@ -16,20 +16,21 @@ var current_object = null
 
 func _process(delta):
 	pass
+	
 func _input(event):
 	var getobject=get_object_under_mouse()
 	if(event.is_action_pressed("click") and getobject.size()>0 and getobject["collider"]!=self):
 		can_be_done=false
 	elif(event.is_action_pressed("click") and getobject.size()>0 and getobject["collider"]==self):
 		can_be_done=true
-		get_tree().call_group("AssetTree", "already_selected", true)
+#		get_tree().call_group("AssetTree", "already_selected", true)
 		print("group called")
 	if(can_be_done==false):
 		return
 		
-	if current_object != null:
-		getobject = current_object
-		current_object = null
+#	if current_object != null:
+#		getobject = current_object
+#		current_object = null
 		
 	if event is InputEventMouseMotion:
 		if is_left_mouse_button_down == true and (getobject.size()==0 or getobject["collider"]!=self):

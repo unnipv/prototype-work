@@ -16,10 +16,11 @@ const LOOKAROUND_SPEED = 0.1
 var is_right_mouse_button_down = false
 var is_left_mouse_button_down = false
 
-#func _physics_process(delta):
-#	if enabled:
-#		move()
-#		scale_asset()
+func _physics_process(delta):
+	if enabled:
+#		get_tree().call_group("AssetTree", "already_selected", true)
+		move()
+		scale_asset()
 
 func _input(event):
 	if(event.is_action_pressed("click") and not enabled):
@@ -29,7 +30,8 @@ func _input(event):
 	if(can_be_done==false):
 		return
 	if event is InputEventMouseMotion:
-		if is_left_mouse_button_down == true and not enabled:
+		current_object = get_object_under_mouse()
+		if is_left_mouse_button_down == true:
 			translation.x=current_object["position"].x
 			translation.z=current_object["position"].z
 	if event is InputEventMouseButton:
@@ -66,23 +68,31 @@ func set_enabled(object):
 	else:
 		enabled = false
 
-#func move():
-#	if Input.is_action_just_pressed("forward"):
-#		translation.x+=1
-#	if(Input.is_action_just_pressed("backward")):
-#		translation.x-=1
-#	if(Input.is_action_just_pressed("left")):
-#		translation.z-=1
-#	if(Input.is_action_just_pressed("right")):
-#		translation.z+=1
-#
-#func scale_asset():
-#	if Input.is_action_just_pressed("decrease"):
-#		print("scaling down")
-#		scale.x -=0.1
-#		scale.z -=0.1
-#		scale.y -=0.1
-#	if Input.is_action_just_pressed("increase"):
-#		scale.x +=0.1
-#		scale.z +=0.1
-#		scale.y +=0.1
+func move():
+	if Input.is_action_just_pressed("forward"):
+		translation.x+=1
+	if(Input.is_action_just_pressed("backward")):
+		translation.x-=1
+	if(Input.is_action_just_pressed("left")):
+		translation.z-=1
+	if(Input.is_action_just_pressed("right")):
+		translation.z+=1
+
+func scale_asset():
+	if Input.is_action_just_pressed("decrease"):
+		print("scaling down")
+		scale.x -=0.1
+		scale.z -=0.1
+		scale.y -=0.1
+	if Input.is_action_just_pressed("increase"):
+		scale.x +=0.1
+		scale.z +=0.1
+		scale.y +=0.1
+
+func get_object_under_mouse():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_from = get_node("../../Camera").project_ray_origin(mouse_pos)
+	var ray_to = ray_from + get_node("../../Camera").project_ray_normal(mouse_pos) * 1000
+	var space_state = get_world().direct_space_state
+	var selection = space_state.intersect_ray(ray_from, ray_to)
+	return selection

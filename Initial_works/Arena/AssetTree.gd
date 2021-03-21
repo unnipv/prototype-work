@@ -17,11 +17,14 @@ func add_asset(text, asset_id):
 func asset_select():
 	if get_selected() != null:
 		var current_object = get_selected().get_metadata(0)
+		print(current_object)
 		get_tree().call_group("Assets", "set_enabled", current_object)
 		is_selected = false
 
 func already_selected(flag):
 	is_selected = true
 
-func _on_AssetTree_item_selected():
+
+
+func _on_AssetTree_cell_selected():
 	asset_select()
