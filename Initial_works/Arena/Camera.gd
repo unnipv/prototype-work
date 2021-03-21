@@ -6,13 +6,13 @@ var mouse_sensitivity=800
 
 func _process(delta):
 	if(Input.is_action_just_pressed("camera_forward")):
-		translation.z-=1
-	if(Input.is_action_just_pressed("camera_backward")):
-		translation.z+=1
-	if(Input.is_action_just_pressed("camera_left")):
-		translation.x-=1
-	if(Input.is_action_just_pressed("camera_right")):
 		translation.x+=1
+	if(Input.is_action_just_pressed("camera_backward")):
+		translation.x-=1
+	if(Input.is_action_just_pressed("camera_left")):
+		translation.z-=1
+	if(Input.is_action_just_pressed("camera_right")):
+		translation.z+=1
 	if(Input.is_action_just_pressed("camera_up")):
 		translation.y+=1
 	if(Input.is_action_just_pressed("camera_down")):

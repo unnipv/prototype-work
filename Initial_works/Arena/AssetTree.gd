@@ -24,7 +24,5 @@ func asset_select():
 func already_selected(flag):
 	is_selected = true
 
-
-
 func _on_AssetTree_cell_selected():
 	asset_select()
