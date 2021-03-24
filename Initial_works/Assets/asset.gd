@@ -104,8 +104,10 @@ func rot_mouse(event):
 		if is_right_mouse_button_down == true:
 			rot_x += event.relative.x * LOOKAROUND_SPEED
 			rot_y += event.relative.y * LOOKAROUND_SPEED
+			var old_scale = scale
 			transform.basis = Basis()
 			rotate_object_local(Vector3(0, 1, 0), rot_x)
+			scale = old_scale
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
 			is_right_mouse_button_down = event.pressed
