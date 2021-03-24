@@ -39,8 +39,8 @@ func set_enabled(object):
 
 func get_object_under_mouse():
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_from = get_node("../../Camera").project_ray_origin(mouse_pos)
-	var ray_to = ray_from + get_node("../../Camera").project_ray_normal(mouse_pos) * 1000
+	var ray_from = get_node("/root/World/Camera").project_ray_origin(mouse_pos)
+	var ray_to = ray_from + get_node("/root/World/Camera").project_ray_normal(mouse_pos) * 1000
 	var space_state = get_world().direct_space_state
 	var selection = space_state.intersect_ray(ray_from, ray_to)
 	return selection
@@ -76,8 +76,8 @@ func move_mouse(event):
 	if event is InputEventMouseMotion:
 		current_object = get_object_under_mouse()
 		if is_left_mouse_button_down == true:
-			translation.x=current_object["position"].x
-			translation.z=current_object["position"].z
+			var target_location = Vector3(current_object["position"].x,global_transform.origin.y,current_object["position"].z)
+			global_transform.origin = get_global_transform().origin.linear_interpolate(target_location, 1)
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			is_left_mouse_button_down = event.pressed
